@@ -153,14 +153,24 @@
   <ItemGroup>
     <ClCompile Include="..\Dependencies\includes\glad\glad.c" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\Program\Core\Shader.cpp" />
+    <ClCompile Include="src\Program\Core\Texture.cpp" />
+    <ClCompile Include="src\Program\Core\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Program\Core\Shader.h" />
+    <ClInclude Include="src\Program\Core\Texture.h" />
+    <ClInclude Include="src\Program\Core\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fs.shader" />
     <None Include="res\shaders\vs.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\images\bush.png" />
+    <Image Include="res\images\face.png" />
+    <Image Include="res\images\wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

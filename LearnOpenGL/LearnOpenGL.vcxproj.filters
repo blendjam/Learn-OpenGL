@@ -24,14 +24,40 @@
     <ClCompile Include="src\Program\Core\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Program\Core\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Program\Core\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Program\Core\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Program\Core\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Program\Core\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fs.shader" />
     <None Include="res\shaders\vs.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\images\wall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\bush.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\face.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

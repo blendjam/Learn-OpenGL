@@ -10,11 +10,11 @@ class Shader
 private:
 	unsigned int compileShader(const unsigned int& type, const std::string& source);
 public:
-	unsigned int ID;
+	unsigned int m_ID;
 	Shader(const std::string& vertexName, const std::string& fragmentName);
 	void use();
-	void setBool(const std::string& name, bool value) const;
-	void setInt(const std::string& name, int value) const;
-	void setFloat(const std::string& name, float value) const;
+	void setBool(const std::string& variable, bool value) const;
+	void setInt(const std::string& variable, int value) const;
+	void setFloat(const std::string& variable, float value) const;
 };
 #endif

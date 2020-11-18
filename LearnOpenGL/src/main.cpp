@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <stb_image.h>
 #include "Program/Core/Shader.h"
+#include "Program/Core//Texture.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 const unsigned int SCR_WIDTH = 800;
@@ -30,18 +32,12 @@ int main(void)
 		return -1;
 	}
 
-	//Uncomment for rectangle
-	//float t1[] = {
-	//  0.5f,  0.5f, 0.0f,  // top right
-	//  0.5f, -0.5f, 0.0f,  // bottom right
-	// -0.5f, -0.5f, 0.0f,  // bottom left
-	// -0.5f,  0.5f, 0.0f   // top left 
-	//};
 	float t1[] = {
-		// positions // colors
-		0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
-		0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f // top
+		// positions      // colors				// texture coords
+		0.5f, 0.5f, 0.0f,   1.0f, 0.0f, 0.0f,	1.0f, 1.0f, // top right
+		0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f, 	1.0f, 0.0f, // bottom right
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 	0.0f, 0.0f, // bottom left
+		-0.5f, 0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 	0.0f, 1.0f // top left
 	};
 	unsigned int indices[] = {
 		0, 1, 2,
@@ -52,7 +48,7 @@ int main(void)
 	// Generate Buffers and Vertex Arrays
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-	//glGenBuffers(1, &EBO);
+	glGenBuffers(1, &EBO);
 
 	//Binding
 	glBindVertexArray(VAO);
@@ -60,34 +56,50 @@ int main(void)
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(t1), t1, GL_STATIC_DRAW);
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	//Telling OpenGL about the layout of your verteices
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)0);
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(sizeof(float) * 3));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 3));
+
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 6));
 
 
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	//Configuring the shader
 	Shader shaderProgram("res/shaders/vs.shader", "res/shaders/fs.shader");
 	shaderProgram.use();
 
-	//Reset
+	//Loading Textures
+	Texture tex1("res/images/wall.png");
+	Texture tex2("res/images/face.png", true);
+	shaderProgram.setInt("texture1", 0);
+	shaderProgram.setInt("texture2", 1);
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	float value = 0.5;
+	int up, down;
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//---------Calculate color-------------
+		//---------bind textures
+		tex1.bind(0);
+		tex2.bind(1);
 		//----Draw Here---
-		glBindVertexArray(VAO);
-		unsigned int uniformLocation = glGetUniformLocation(shaderProgram.ID, "xoffset");
-		glUniform1f(uniformLocation, 0.5f);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		up = glfwGetKey(window, GLFW_KEY_UP);
+		down = glfwGetKey(window, GLFW_KEY_DOWN);
+		if (up == GLFW_PRESS && value <= 1)
+			value += 0.0001;
+		if (down == GLFW_PRESS && value >= 0)
+			value -= 0.0001;
+		shaderProgram.setFloat("value", value);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		//-----------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -107,6 +119,4 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }
-
-
 

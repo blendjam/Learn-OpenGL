@@ -14,19 +14,19 @@ Shader::Shader(const std::string& vertexShaderPath, const std::string& fragmentS
 	{
 		ss[1] << line << "\n";
 	}
-	ID = glCreateProgram();
+	m_ID = glCreateProgram();
 	unsigned int vs = compileShader(GL_VERTEX_SHADER, ss[0].str());
 	unsigned int fs = compileShader(GL_FRAGMENT_SHADER, ss[1].str());
 
-	glAttachShader(ID, vs);
-	glAttachShader(ID, fs);
-	glLinkProgram(ID);
+	glAttachShader(m_ID, vs);
+	glAttachShader(m_ID, fs);
+	glLinkProgram(m_ID);
 	int success;
 	char infoLog[512];
-	glGetProgramiv(ID, GL_LINK_STATUS, &success);
+	glGetProgramiv(m_ID, GL_LINK_STATUS, &success);
 	if (!success)
 	{
-		glGetProgramInfoLog(ID, 512, NULL, infoLog);
+		glGetProgramInfoLog(m_ID, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" <<
 			infoLog << std::endl;
 	}
@@ -56,5 +56,20 @@ unsigned int Shader::compileShader(const unsigned int& type, const std::string& 
 
 void Shader::use()
 {
-	glUseProgram(ID);
+	glUseProgram(m_ID);
+}
+
+void Shader::setBool(const std::string& variable, bool value) const
+{
+	glUniform1i(glGetUniformLocation(m_ID, variable.c_str()), (int)value);
+}
+
+void Shader::setInt(const std::string& variable, int value) const
+{
+	glUniform1i(glGetUniformLocation(m_ID, variable.c_str()), value);
+}
+
+void Shader::setFloat(const std::string& variable, float value) const
+{
+	glUniform1f(glGetUniformLocation(m_ID, variable.c_str()), value);
 }
