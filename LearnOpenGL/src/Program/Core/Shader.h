@@ -16,5 +16,6 @@ public:
 	void setBool(const std::string& variable, bool value) const;
 	void setInt(const std::string& variable, int value) const;
 	void setFloat(const std::string& variable, float value) const;
+	void setMatrix(const std::string& variable, float* value)const;
 };
 #endif
