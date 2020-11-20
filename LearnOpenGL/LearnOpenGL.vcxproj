@@ -159,6 +159,7 @@
     <ClCompile Include="src\Program\Core\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Dependencies\includes\glm\glm.hpp" />
     <ClInclude Include="src\Program\Core\Shader.h" />
     <ClInclude Include="src\Program\Core\Texture.h" />
     <ClInclude Include="src\Program\Core\Vector2.h" />

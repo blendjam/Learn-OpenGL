@@ -44,6 +44,9 @@
     <ClInclude Include="src\Program\Core\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Dependencies\includes\glm\glm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fs.shader" />
