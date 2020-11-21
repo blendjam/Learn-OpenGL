@@ -87,4 +87,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\color.fs" />
+    <None Include="res\shaders\color.vs" />
+    <None Include="res\shaders\light.fs" />
+    <None Include="res\shaders\light.vs" />
+  </ItemGroup>
 </Project>

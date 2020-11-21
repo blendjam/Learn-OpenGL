@@ -19,5 +19,6 @@ public:
 	void setInt(const std::string& variable, int value) const;
 	void setFloat(const std::string& variable, float value) const;
 	void setMatrix(const std::string& variable, glm::mat4 value)const;
+	void setVec(const std::string& variable, glm::vec3 value)const;
 };
 #endif

@@ -47,7 +47,7 @@ unsigned int Shader::compileShader(const unsigned int& type, const std::string& 
 	if (!success)
 	{
 		glGetShaderInfoLog(shaderID, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" <<
+		std::cout << "ERROR::SHADER::" << type << "COMPILATION_FAILED\n" <<
 			infoLog << std::endl;
 	};
 	//------------------------------
@@ -77,3 +77,10 @@ void Shader::setMatrix(const std::string& variable, glm::mat4 value)const
 {
 	glUniformMatrix4fv(glGetUniformLocation(m_ID, variable.c_str()), 1, GL_FALSE, &value[0][0]);
 }
+
+void Shader::setVec(const std::string& variable, glm::vec3 value)const
+{
+	glUniform3fv(glGetUniformLocation(m_ID, variable.c_str()), 1, &value[0]);
+}
+
+

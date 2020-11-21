@@ -177,6 +177,12 @@
     <ClInclude Include="src\vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="src\vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\color.fs" />
+    <None Include="res\shaders\color.vs" />
+    <None Include="res\shaders\light.fs" />
+    <None Include="res\shaders\light.vs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
