@@ -18,7 +18,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 glm::mat4 identityMat(1.0f);
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-glm::vec3 lightPos(1.0f, 1.0f, 2.0f);
+glm::vec3 lightPos(1.0f, 1.0f, -5.0f);
 float lightspeed = 2.5f;
 bool firstMouse = true;
 float lastX, lastY;
@@ -205,6 +205,7 @@ int main(void)
 		colorShader.setVec("objColor", glm::vec3(1.0f, 0.5f, 0.31f));
 		colorShader.setVec("lightColor", glm::vec3(1.0f));
 		colorShader.setVec("lightPos", lightPos);
+		colorShader.setVec("viewPos", camera.Position);
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection = glm::perspective(TORAD(camera.Zoom), (float)(SCR_WIDTH / SCR_HEIGHT), 0.1f, 100.0f);
 		glm::mat4 model(1.0f);
