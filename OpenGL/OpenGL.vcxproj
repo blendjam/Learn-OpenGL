@@ -153,21 +153,24 @@
   <ItemGroup>
     <ClCompile Include="..\Dependencies\glad\glad.c" />
     <ClCompile Include="..\Dependencies\stb_image.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\vendor\Core\Camera.cpp" />
-    <ClCompile Include="src\vendor\Core\Shader.cpp" />
-    <ClCompile Include="src\vendor\Core\Texture.cpp" />
+    <ClCompile Include="src\Core\Camera.cpp" />
+    <ClCompile Include="src\Core\Shader.cpp" />
+    <ClCompile Include="src\Core\Texture.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_draw.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\vendor\Core\Camera.h" />
-    <ClInclude Include="src\vendor\Core\Shader.h" />
-    <ClInclude Include="src\vendor\Core\Texture.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="src\Core\Camera.h" />
+    <ClInclude Include="src\Core\Shader.h" />
+    <ClInclude Include="src\Core\Texture.h" />
     <ClInclude Include="src\vendor\imgui\imconfig.h" />
     <ClInclude Include="src\vendor\imgui\imgui.h" />
     <ClInclude Include="src\vendor\imgui\imgui_impl_glfw.h" />
@@ -176,12 +179,14 @@
     <ClInclude Include="src\vendor\imgui\imstb_rectpack.h" />
     <ClInclude Include="src\vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="src\vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\Core\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\color.fs" />
-    <None Include="res\shaders\color.vs" />
-    <None Include="res\shaders\light.fs" />
-    <None Include="res\shaders\light.vs" />
+    <None Include="res\shaders\color.frag" />
+    <None Include="res\shaders\color.vert" />
+    <None Include="res\shaders\light.frag" />
+    <None Include="res\shaders\light.vert" />
+    <None Include="res\shaders\outline.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
